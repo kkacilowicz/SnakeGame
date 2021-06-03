@@ -10,17 +10,19 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     private Snake player; //obiekt player klasy Snake
     private Food food; //jedzenie
     private Graphics graphics;
+    private Obstacles obstacles;
 
     private JFrame window; //okno gry
-    public static final int windowsWidth = 30;
-    public static final int windowsHeight = 30;
-    public static final int windowsDimension = 20;
+    public static final int windowsWidth = 60;
+    public static final int windowsHeight = 60;
+    public static final int windowsDimension = 10;
 
         //konstruktor klasy Game
     public Game() {
         window = new JFrame(); //tworzę nowe okno
         player = new Snake();
         food = new Food(player);
+        obstacles = new Obstacles();
 
         graphics = new Graphics(this);
 
@@ -126,6 +128,14 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
 
     public void setPlayer(Snake player) {
         this.player = player;
+    }
+
+    public Obstacles getObstacles() {
+        return obstacles;
+    }
+
+    public void setObstacles(Obstacles obstacles) {
+        this.obstacles = obstacles;
     }
 
     public JFrame getWindow() {

@@ -4,18 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class Graphics
 extends JPanel
 implements ActionListener {
 
-    private Timer t = new Timer(100, this); //utworzenie timera, co 100ms tło będzie rysowane
+    private Timer t = new Timer(75, this); //utworzenie timera, co 100ms tło będzie rysowane
     public String gameState;
 
     private Snake s;
     private Food f;
     private Game game;
+    private Obstacles obstacles;
 
 
     public Graphics(Game g) { //konstruktor klasy Graphics
@@ -25,6 +27,7 @@ implements ActionListener {
         game = g;
         s = g.getPlayer();
         f = g.getFood();
+        obstacles = g.getObstacles();
 
 
         this.addKeyListener(g); //dodanie keyListenera do obiektu klasy Game
@@ -45,6 +48,15 @@ implements ActionListener {
             g2d.drawString("Press Any Key To Start", Game.windowsWidth / 2 * Game.windowsDimension - 40, Game.windowsHeight / 2 * Game.windowsDimension - 20 );
 
         } else if (gameState == "RUNNING") {
+
+            g2d.setColor(Color.BLUE);  //kolor przeszkody
+
+            for(Rectangle r : obstacles.getObstaclesBodies()) { //wypełnienie każdego prostokąta stanowiącego ciało węża
+                g2d.fill(r);
+            }
+
+
+
 
             g2d.setColor(Color.RED); //kolor jedzenia
             g2d.fillRect(f.getX() * Game.windowsDimension, f.getY() * Game.windowsDimension, Game.windowsDimension, Game.windowsDimension);

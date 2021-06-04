@@ -51,12 +51,11 @@ implements ActionListener {
 
             g2d.setColor(Color.BLUE);  //kolor przeszkody
 
-            for(Rectangle r : obstacles.getObstaclesBodies()) { //wypełnienie każdego prostokąta stanowiącego ciało węża
-                g2d.fill(r);
+            for(ArrayList<Rectangle> Obstacle : obstacles.getObstaclesBodies()) { //wypełnienie każdego prostokąta stanowiącego ciało węża
+                for (Rectangle r: Obstacle) {
+                    g2d.fill(r);
+                }
             }
-
-
-
 
             g2d.setColor(Color.RED); //kolor jedzenia
             g2d.fillRect(f.getX() * Game.windowsDimension, f.getY() * Game.windowsDimension, Game.windowsDimension, Game.windowsDimension);

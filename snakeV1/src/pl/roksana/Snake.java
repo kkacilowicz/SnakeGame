@@ -3,8 +3,8 @@ package pl.roksana;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Snake {
-
+public class Snake implements Runnable
+{
 
     private ArrayList<Rectangle> snakesBody; //ciało węża będzie składać się z prostokątów
     private int w = Game.windowsWidth;
@@ -119,5 +119,10 @@ public class Snake {
 
     public void right(){
         move = "RIGHT";
+    }
+
+    @Override
+    public void run() {
+        this.move();
     }
 }

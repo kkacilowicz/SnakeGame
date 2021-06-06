@@ -13,6 +13,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     private Food food; //jedzenie
     private Graphics graphics;
     private Obstacles obstacles;
+    private ProgramThreads threads;
 
     private JFrame window; //okno gry
     public static final int windowsWidth = 60;
@@ -25,6 +26,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         player = new Snake();
         food = new Food(player);
         obstacles = new Obstacles();
+        threads = new ProgramThreads(4);
 
         graphics = new Graphics(this);
 
@@ -50,7 +52,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
             }else if (checkWallCollision() || checkSelfCollision() || checkObstacleCollision()) {
                 graphics.gameState = "END";
             } else {
-                player.move();
+                threads.runTask(player);
             }
 
         }

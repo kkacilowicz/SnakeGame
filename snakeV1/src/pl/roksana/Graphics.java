@@ -26,8 +26,8 @@ implements ActionListener {
 
         game = g;
         s = g.getPlayer();
-        f = g.getFood();
         obstacles = g.getObstacles();
+        f = g.getFood();
 
 
         this.addKeyListener(g); //dodanie keyListenera do obiektu klasy Game

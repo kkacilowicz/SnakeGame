@@ -27,7 +27,7 @@ public class SnakeThread extends Thread
                 return;
 
             try {
-                System.out.println("Dziala" + ThreadName);
+                //System.out.println("Dziala" + ThreadName);
                 task.run();
             }
             catch (Throwable t) {

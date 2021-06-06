@@ -26,16 +26,16 @@ public class Obstacles {
 
             var OneObstacle = new ArrayList<Rectangle>();
             var IsHorizontal = (Math.random() < 0.5);    //to zwraca random true lub false
-            var StartXLocation = (int) (Math.random() * Game.windowsWidth);
-            var StartYLocation = (int) (Math.random() * Game.windowsHeight);
+            var StartXLocation = (int) (Math.random() * (Game.windowsWidth-5));
+            var StartYLocation = (int) (Math.random() * (Game.windowsHeight-5));
 
-            //zabezpieczenie przed tym, żeby przeszkoda powstała na snake'u
+            //zabezpieczenie przed tym, żeby przeszkoda nie powstała na snake'u i innych przeszkodach
             if (LocationXOnSnake(StartXLocation) ||LocationYOnSnake(StartYLocation) ) {
                 while (LocationXOnSnake(StartXLocation) ||LocationYOnSnake(StartYLocation) ||
                         CheckIfTheresObstacle(StartXLocation, StartYLocation, IsHorizontal) ||
                         TooCloseToWall(StartXLocation, StartYLocation)) {
-                    StartXLocation = (int) (Math.random() * Game.windowsWidth);
-                    StartYLocation = (int) (Math.random() * Game.windowsHeight);
+                    StartXLocation = (int) (Math.random() * (Game.windowsWidth-5));
+                    StartYLocation = (int) (Math.random() * (Game.windowsHeight-5));
                 }
             }
 

@@ -24,8 +24,8 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     public Game() {
         window = new JFrame(); //tworzę nowe okno
         player = new Snake();
-        food = new Food(player);
         obstacles = new Obstacles();
+        food = new Food(player, obstacles);
         threads = new ProgramThreads(4);
 
         graphics = new Graphics(this);

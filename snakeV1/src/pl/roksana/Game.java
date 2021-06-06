@@ -1,8 +1,10 @@
 package pl.roksana;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class Game
 implements KeyListener{ //listener który będzie nasłuchiwał które klawisze są wciskane
@@ -45,7 +47,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
             if (checkFoodCollision()) {
                 player.grow();
                 food.randomSpawn(player);
-            }else if (checkWallCollision() || checkSelfCollision()) {
+            }else if (checkWallCollision() || checkSelfCollision() || checkObstacleCollision()) {
                 graphics.gameState = "END";
             } else {
                 player.move();
@@ -71,6 +73,16 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     private boolean checkSelfCollision() {
         for(int i = 1; i < player.getSnakesBody().size() ; i++) {
             if (player.getX() == player.getSnakesBody().get(i).x && player.getY() == player.getSnakesBody().get(i).y) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkObstacleCollision(){
+        for (ArrayList<Rectangle> Obstacle: obstacles.getObstaclesBodies()) {
+            for (Rectangle r: Obstacle) {
+                if(player.getX() == r.x && player.getY() == r.y)
                 return true;
             }
         }

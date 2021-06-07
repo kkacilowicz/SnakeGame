@@ -16,6 +16,7 @@ implements ActionListener {
 
     private Snake s;
     private Food f;
+    private Frog frog;
     private Game game;
     private Obstacles obstacles;
 
@@ -28,6 +29,7 @@ implements ActionListener {
         s = g.getPlayer();
         obstacles = g.getObstacles();
         f = g.getFood();
+        frog = g.getFrog();
 
 
         this.addKeyListener(g); //dodanie keyListenera do obiektu klasy Game
@@ -75,6 +77,9 @@ implements ActionListener {
             for (Rectangle r: f.getFruits()) {
                 g2d.fill(r);
             }
+
+            g2d.setColor(Color.GREEN);
+            g2d.fill(frog.getFrogBody());
 
             g2d.setColor(Color.YELLOW); //kolor węża
             for(Rectangle r : s.getSnakesBody()) { //wypełnienie każdego prostokąta stanowiącego ciało węża

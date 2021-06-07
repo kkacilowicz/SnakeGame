@@ -1,5 +1,6 @@
 package pl.roksana;
 
+import javax.xml.stream.Location;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -27,9 +28,7 @@ public class Food implements Runnable {
             var LocationY = (int) (Math.random() * (Game.windowsHeight - 5));
 
             //zabezpieczenie przed tym, żeby przeszkoda nie powstała na snake'u i innych przeszkodach
-            while (LocationOnSnake(LocationX, LocationY, player) ||
-                    obstacles.CheckIfTheresObstacle(LocationX, LocationY, true) ||
-                    obstacles.CheckIfTheresObstacle(LocationX, LocationY, false)) {
+            while (NotPossibleLocation(LocationX, LocationY)) {
                 LocationX = (int) (Math.random() * (Game.windowsWidth - 5));
                 LocationY = (int) (Math.random() * (Game.windowsHeight - 5));
             }
@@ -51,7 +50,29 @@ public class Food implements Runnable {
 
     }
 
-    private boolean LocationOnSnake(int LocationX, int LocationY, Snake player){
+    private boolean NotPossibleLocation(int LocationX, int LocationY){
+        return LocationOnSnake(LocationX, LocationY, player) ||
+                obstacles.CheckIfTheresObstacle(LocationX, LocationY, true) ||
+                obstacles.CheckIfTheresObstacle(LocationX, LocationY, false) ||
+                LocationOnWall(LocationX, LocationY) ||
+                LocationOnFruit(LocationX, LocationY);
+    }
+
+    public boolean LocationOnFruit(int LocationX, int LocationY){
+
+        var PositionX = LocationX * Game.windowsDimension;
+        var PositionY = LocationY * Game.windowsDimension;
+        for (Rectangle fruit: Fruits) {
+            if(PositionX + Game.windowsDimension >= fruit.x &&
+                    PositionX - Game.windowsDimension <= fruit.x &&
+                    PositionY + Game.windowsDimension >= fruit.y &&
+                    PositionY - Game.windowsDimension <= fruit.y)
+                return true;
+        }
+
+        return false;
+    }
+    public boolean LocationOnSnake(int LocationX, int LocationY, Snake player){
 
         for(Rectangle r : player.getSnakesBody()){ //dla każdego prostokąta wchodzącego w skład ciała węża
             if(r.x == LocationX && r.y == LocationY) { //sprawdza czy jego współrzędne zgadzają się z współrzędnymi
@@ -60,6 +81,10 @@ public class Food implements Runnable {
             }
         }
         return false;
+    }
+
+    public boolean LocationOnWall(int LocationX, int LocationY) {
+        return LocationX < 0 || LocationX >= Game.windowsWidth || LocationY < 0 || LocationY >= Game.windowsHeight;
     }
 
     public ArrayList<Rectangle> getFruits() {

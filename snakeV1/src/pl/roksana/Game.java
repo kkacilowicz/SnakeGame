@@ -11,6 +11,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
 
     private Snake player; //obiekt player klasy Snake
     private Food food; //jedzenie
+    private Frog frog;
     private Graphics graphics;
     private Obstacles obstacles;
     private ProgramThreads threads;
@@ -26,6 +27,8 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         player = new Snake();
         obstacles = new Obstacles();
         food = new Food(player, obstacles);
+        frog = new Frog(player, obstacles, food);
+
         threads = new ProgramThreads(4);
 
         graphics = new Graphics(this);
@@ -58,7 +61,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     }
 
     private boolean checkWallCollision() {
-        if(player.getX() < 0 || player.getX() >= windowsDimension * windowsWidth || player.getY() < 0 || player.getY() >= windowsDimension * windowsHeight ) {
+        if(player.getX() <= 0 || player.getX() >= windowsDimension * windowsWidth || player.getY() <= 0 || player.getY() >= windowsDimension * windowsHeight ) {
             return true;
         }
         return false;
@@ -159,5 +162,13 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
 
     public void setWindow(JFrame window) {
         this.window = window;
+    }
+
+    public Frog getFrog() {
+        return frog;
+    }
+
+    public void setFrog(Frog frog) {
+        this.frog = frog;
     }
 }

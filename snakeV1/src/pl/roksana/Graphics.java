@@ -11,7 +11,7 @@ public class Graphics
 extends JPanel
 implements ActionListener {
 
-    private Timer t = new Timer(75, this); //utworzenie timera, co 100ms tło będzie rysowane
+    private Timer t = new Timer(75, this); //utworzenie timera, co 75ms tło będzie rysowane
     public String gameState;
 
     private Snake s;
@@ -38,14 +38,28 @@ implements ActionListener {
     public void paintComponent(java.awt.Graphics g) {
         super.paintComponent(g);
 
+        Font fnt0 = new Font("arial", Font.BOLD, 60);
+        Font fnt1 = new Font("arial",Font.CENTER_BASELINE, 25);
+
         Graphics2D g2d = (Graphics2D) g;
+
+        //Image logo = new Image();
 
         g2d.setColor(Color.black);
         g2d.fillRect(0, 0, Game.windowsWidth * Game.windowsDimension + 5, Game.windowsHeight * Game.windowsDimension + 5);
 
         if(gameState == "START") {
             g2d.setColor(Color.white);
-            g2d.drawString("Press Any Key To Start", Game.windowsWidth / 2 * Game.windowsDimension - 40, Game.windowsHeight / 2 * Game.windowsDimension - 20 );
+            g2d.setFont(fnt0);
+            g2d.drawString("SNAKE GAME", Game.windowsWidth / 2 * Game.windowsDimension - 210, Game.windowsHeight / 2 * Game.windowsDimension - 20 );
+
+            g2d.setColor(Color.yellow);
+            g2d.setFont(fnt1);
+            g2d.drawString("Press any key to start", Game.windowsWidth / 2 * Game.windowsDimension - 140, Game.windowsHeight / 2 * Game.windowsDimension + 50);
+
+
+
+
 
         } else if (gameState == "RUNNING") {
 
@@ -65,8 +79,14 @@ implements ActionListener {
                 g2d.fill(r);
             }
         } else {
+            g2d.setColor(Color.red);
+            g2d.setFont(fnt0);
+            g2d.drawString("GAME OVER", Game.windowsWidth / 2 * Game.windowsDimension - 200, Game.windowsHeight / 2 * Game.windowsDimension - 20 );
+
+
             g2d.setColor(Color.white);
-            g2d.drawString("Your Score: " + (s.getSnakesBody().size() - 3), Game.windowsWidth / 2 * Game.windowsDimension - 40, Game.windowsHeight / 2 * Game.windowsDimension - 20 );
+            g2d.setFont(fnt1);
+            g2d.drawString("Your Score: " + (s.getSnakesBody().size() - 3), Game.windowsWidth / 2 * Game.windowsDimension - 100, Game.windowsHeight / 2 * Game.windowsDimension + 50);
         }
 
     }

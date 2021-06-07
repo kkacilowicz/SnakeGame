@@ -72,7 +72,9 @@ implements ActionListener {
             }
 
             g2d.setColor(Color.RED); //kolor jedzenia
-            g2d.fillRect(f.getX() * Game.windowsDimension, f.getY() * Game.windowsDimension, Game.windowsDimension, Game.windowsDimension);
+            for (Rectangle r: f.getFruits()) {
+                g2d.fill(r);
+            }
 
             g2d.setColor(Color.YELLOW); //kolor węża
             for(Rectangle r : s.getSnakesBody()) { //wypełnienie każdego prostokąta stanowiącego ciało węża

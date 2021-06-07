@@ -48,13 +48,12 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         if (graphics.gameState == "RUNNING") {
             if (checkFoodCollision()) {
                 player.grow();
-                food.randomSpawn(player);
+                threads.runTask(food);
             }else if (checkWallCollision() || checkSelfCollision() || checkObstacleCollision()) {
                 graphics.gameState = "END";
             } else {
                 threads.runTask(player);
             }
-
         }
     }
 
@@ -66,8 +65,10 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     }
 
     private   boolean checkFoodCollision() {
-        if(player.getX() == food.getX() * windowsDimension && player.getY() == food.getY() * windowsDimension) {
-            return true;
+        for (Rectangle R: food.getFruits()) {
+            if (player.getX() == R.x && player.getY() == R.y) {
+                return true;
+            }
         }
         return false;
     }

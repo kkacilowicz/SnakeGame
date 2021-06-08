@@ -19,7 +19,7 @@ public class Obstacles {
 
         ObstaclesBodies = new ArrayList<ArrayList<Rectangle>>();
         var Dimension = Game.windowsDimension;
-        LengthOfObstacles = 10;
+        LengthOfObstacles = 20;
         NumberOfObstacles = 3;
 
         for(int j = 0; j < NumberOfObstacles; j++) {
@@ -49,7 +49,7 @@ public class Obstacles {
             } else {
                 for (int i = 0; i < LengthOfObstacles; i++) {
                     Rectangle tmp = new Rectangle(Dimension, Dimension);
-                    tmp.setLocation(StartXLocation * Dimension, (StartYLocation - i) * Dimension);
+                    tmp.setLocation(StartXLocation * Dimension, (StartYLocation + i) * Dimension);
                     OneObstacle.add(tmp);
                 }
             }
@@ -86,6 +86,29 @@ public class Obstacles {
                 for (Rectangle r : Obstacle) {
                     if ((LocationY * Game.windowsDimension <= r.y && (LocationY + LengthOfObstacles) * Game.windowsDimension >= r.y)
                             && ((LocationX - 1) * Game.windowsDimension <= r.x && (LocationX + 1) * Game.windowsDimension >= r.x))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public boolean CheckIfTheresObstacle(Rectangle R, boolean IsHorizontal){
+
+        if(!IsHorizontal) {
+            for (ArrayList<Rectangle> Obstacle : ObstaclesBodies) {
+                for (Rectangle r : Obstacle) {
+                    if ((R.x <= r.x && (R.x + (LengthOfObstacles * Game.windowsDimension) >= r.x)
+                            && (R.y -  Game.windowsDimension) <= r.y) && (R.y + Game.windowsDimension >= r.y))
+                        return true;
+                }
+            }
+        }else{
+            for (ArrayList<Rectangle> Obstacle : ObstaclesBodies) {
+                for (Rectangle r : Obstacle) {
+                    if ((R.y <= r.y) && (R.y + (LengthOfObstacles * Game.windowsDimension) >= r.y)
+                            && (R.x - Game.windowsDimension <= r.x && R.x + Game.windowsDimension >= r.x))
                         return true;
                 }
             }

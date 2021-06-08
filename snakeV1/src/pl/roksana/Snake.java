@@ -33,7 +33,7 @@ public class Snake implements Runnable
     }
 
     //porusza wężem poprzez dodawanie prostokąta z przodu ciała węża i usuwanie prostokąta na końcu ciała węża
-    public void move(){
+    synchronized public void move(){
         if(move != "NOTHING") {//sprawdzanie bieżącego ruchu
             Rectangle first = snakesBody.get(0); //pierwszy element ciała węża
 
@@ -83,7 +83,7 @@ public class Snake implements Runnable
 
     }
 
-    public ArrayList<Rectangle> getSnakesBody() {
+    synchronized public ArrayList<Rectangle> getSnakesBody() {
         return snakesBody;
     }
 

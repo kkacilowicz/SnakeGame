@@ -15,6 +15,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     private Graphics graphics;
     private Obstacles obstacles;
     private ProgramThreads threads;
+    private int MoveFrogSlower;     //o ile wolniej ma się ruszać żabka od węża
 
     private JFrame window; //okno gry
     public static final int windowsWidth = 60;
@@ -32,13 +33,14 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         threads = new ProgramThreads(4);
 
         graphics = new Graphics(this);
-
         window.add(graphics);
 
         window.setTitle("Snake");
         window.setSize(windowsWidth * windowsDimension + 2, windowsHeight * windowsDimension + 4);
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//okno zamknie się po naciśnięciu X w rogu ekranu
+
+        MoveFrogSlower =0;
 
     }
 
@@ -52,11 +54,21 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
             if (checkFoodCollision()) {
                 player.grow();
                 threads.runTask(food);
+            }else if(checkFrogCollision()){
+                frog.FrogEaten();
+                threads.runTask(frog);
+                player.grow();
             }else if (checkWallCollision() || checkSelfCollision() || checkObstacleCollision()) {
                 graphics.gameState = "END";
             } else {
+                if(MoveFrogSlower >=4) {    //rzadziej się ta funkcja wywołuje o tyle razy ile jest MoveFrogSlower
+                    MoveFrogSlower =0;
+                    threads.runTask(frog);
+                }
                 threads.runTask(player);
             }
+            MoveFrogSlower++;
+
         }
     }
 
@@ -93,6 +105,10 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
             }
         }
         return false;
+    }
+
+    private boolean checkFrogCollision(){
+        return player.getX() == frog.getFrogBody().x && player.getY() == frog.getFrogBody().y;
     }
 
 

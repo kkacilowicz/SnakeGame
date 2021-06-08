@@ -6,7 +6,6 @@ import java.util.List;
 public class ProgramThreads extends ThreadGroup
 {
     private int numberOfThreads;
-    private boolean alive;
     private List<Runnable> Tasks;
 
     public ProgramThreads(int NumberOfThreads) {
@@ -37,4 +36,5 @@ public class ProgramThreads extends ThreadGroup
             notify();           //obudź wolny wątek do działania
         }
     }
+
 }

@@ -1,14 +1,16 @@
 package pl.roksana;
 
-import javax.xml.stream.Location;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Food implements Runnable {
     private ArrayList<Rectangle> Fruits;
     private int NumberOfFruits;
     private final Obstacles obstacles;
     private Snake player;
+    private int GameWidth;
+    private int GameHeight;
 
     public Food(Snake player, Obstacles obstacles) {
         Fruits = new ArrayList<Rectangle>();
@@ -72,7 +74,20 @@ public class Food implements Runnable {
 
         return false;
     }
-    public boolean LocationOnSnake(int LocationX, int LocationY, Snake player){
+
+    public boolean LocationOnFruit(Rectangle R){
+
+        for (Rectangle fruit: Fruits) {
+            if(R.x + Game.windowsDimension >= fruit.x &&
+                    R.x - Game.windowsDimension <= fruit.x &&
+                    R.y + Game.windowsDimension >= fruit.y &&
+                    R.y - Game.windowsDimension <= fruit.y)
+                return true;
+        }
+
+        return false;
+    }
+    synchronized public boolean LocationOnSnake(int LocationX, int LocationY, Snake player){
 
         for(Rectangle r : player.getSnakesBody()){ //dla każdego prostokąta wchodzącego w skład ciała węża
             if(r.x == LocationX && r.y == LocationY) { //sprawdza czy jego współrzędne zgadzają się z współrzędnymi
@@ -83,8 +98,26 @@ public class Food implements Runnable {
         return false;
     }
 
+    synchronized public boolean LocationOnSnake(Rectangle R, Snake player){
+
+        var SnakesBody = new ArrayList<Rectangle>(player.getSnakesBody());
+
+        for(Rectangle r : SnakesBody){ //dla każdego prostokąta wchodzącego w skład ciała węża
+            if(r==null) return false;
+            if(r.x == R.x && r.y == R.y) { //sprawdza czy jego współrzędne zgadzają się z współrzędnymi
+                // generowanego jedzenia, jeśli tak to zmienna isOnSnake zmienia swoją wartość na true
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean LocationOnWall(int LocationX, int LocationY) {
-        return LocationX < 0 || LocationX >= Game.windowsWidth || LocationY < 0 || LocationY >= Game.windowsHeight;
+        return LocationX < 0 || LocationX >= (Game.windowsWidth-2) || LocationY < 0 || LocationY >= (Game.windowsHeight-4);
+    }
+
+    public boolean LocationOnWall(Rectangle R) {
+        return R.x < 0 || R.x >= (Game.windowsWidth-2)*Game.windowsDimension || R.y < 0 || R.y >= (Game.windowsHeight-4)*Game.windowsDimension;
     }
 
     public ArrayList<Rectangle> getFruits() {
@@ -105,7 +138,9 @@ public class Food implements Runnable {
 
     @Override
     public void run() {
+
         this.FruitEaten();
         this.randomSpawn();
+
     }
 }

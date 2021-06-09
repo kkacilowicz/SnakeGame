@@ -81,10 +81,8 @@ public class AISnake extends Snake{
 
     private boolean CheckCollision(Rectangle Head){
         return food.LocationOnSnake(Head, player) ||
-                obstacles.CheckIfTheresObstacle(Head, true) ||
-                obstacles.CheckIfTheresObstacle(Head, false) ||
-                food.LocationOnWall(Head) ||
-                food.LocationOnFruit(Head);
+                frog.CheckObstacleCollision(Head) ||
+                food.LocationOnWall(Head);
     }
 
     @Override

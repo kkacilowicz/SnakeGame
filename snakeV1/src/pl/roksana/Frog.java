@@ -1,6 +1,7 @@
 package pl.roksana;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Frog implements Runnable {
 
@@ -109,8 +110,7 @@ public class Frog implements Runnable {
 
     private boolean CheckCollision(Rectangle Frog){
         return food.LocationOnSnake(Frog, snake) ||
-                obstacles.CheckIfTheresObstacle(Frog, true) ||
-                obstacles.CheckIfTheresObstacle(Frog, false) ||
+                CheckObstacleCollision(Frog) ||
                 food.LocationOnWall(Frog) ||
                 food.LocationOnFruit(Frog);
     }
@@ -122,6 +122,18 @@ public class Frog implements Runnable {
                 food.LocationOnWall(LocationX, LocationY) ||
                 food.LocationOnFruit(LocationX, LocationY);
     }
+
+    public boolean CheckObstacleCollision(Rectangle Frog){
+        for (ArrayList<Rectangle> Obstacle: obstacles.getObstaclesBodies()) {
+            for (Rectangle R: Obstacle) {
+                if(R.x == Frog.x && R.y == Frog.y)
+                    return true;
+            }
+
+        }
+        return false;
+    }
+
 
     public void FrogEaten(){
         IsFrogEaten = true;

@@ -14,8 +14,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     private Frog frog;
     private Graphics graphics;
     private Obstacles obstacles;
+    private AISnake aiSnake;
     private ProgramThreads threads;
-    private int MoveFrogSlower;     //o ile wolniej ma się ruszać żabka od węża
+    private int MoveAISlower;     //o ile wolniej ma się ruszać żabka od węża
 
     private JFrame window; //okno gry
     public static final int windowsWidth = 60;
@@ -29,6 +30,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         obstacles = new Obstacles();
         food = new Food(player, obstacles);
         frog = new Frog(player, obstacles, food);
+        aiSnake = new AISnake(this);
 
         threads = new ProgramThreads(4);
 
@@ -40,7 +42,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//okno zamknie się po naciśnięciu X w rogu ekranu
 
-        MoveFrogSlower =0;
+        MoveAISlower =0;
 
     }
 
@@ -61,13 +63,16 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
             }else if (checkWallCollision() || checkSelfCollision() || checkObstacleCollision()) {
                 graphics.gameState = "END";
             } else {
-                if(MoveFrogSlower >=4) {    //rzadziej się ta funkcja wywołuje o tyle razy ile jest MoveFrogSlower
-                    MoveFrogSlower =0;
+                if(MoveAISlower >=4) {    //rzadziej się ta funkcja wywołuje o tyle razy ile jest MoveFrogSlower
+                    MoveAISlower =0;
                     threads.runTask(frog);
+                    aiSnake.AvoidObstacles();
+                    aiSnake.move();
                 }
                 threads.runTask(player);
+
             }
-            MoveFrogSlower++;
+            MoveAISlower++;
 
         }
     }
@@ -186,5 +191,13 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
 
     public void setFrog(Frog frog) {
         this.frog = frog;
+    }
+
+    public AISnake getAiSnake() {
+        return aiSnake;
+    }
+
+    public void setAiSnake(AISnake aiSnake) {
+        this.aiSnake = aiSnake;
     }
 }

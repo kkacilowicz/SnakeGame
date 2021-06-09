@@ -6,12 +6,12 @@ import java.util.ArrayList;
 public class Snake implements Runnable
 {
 
-    private ArrayList<Rectangle> snakesBody; //ciało węża będzie składać się z prostokątów
-    private int w = Game.windowsWidth;
-    private int h = Game.windowsHeight;
-    private int d = Game.windowsDimension;
+    protected ArrayList<Rectangle> snakesBody; //ciało węża będzie składać się z prostokątów
+    protected int w = Game.windowsWidth;
+    protected int h = Game.windowsHeight;
+    protected int d = Game.windowsDimension;
 
-    private String move; //domyślna wartość NOTHING, wartości ustalone poprzez wciśnięcie przycisków: UP, DOWN, LEFT, RIGHT
+    protected String move; //domyślna wartość NOTHING, wartości ustalone poprzez wciśnięcie przycisków: UP, DOWN, LEFT, RIGHT
 
     public Snake() {
         snakesBody = new ArrayList<>();

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 
@@ -20,9 +21,11 @@ implements ActionListener {
     private Game game;
     private Obstacles obstacles;
     private AISnake aiSnake;
+    private Leaderboard leaderboard;
 
 
-    public Graphics(Game g) { //konstruktor klasy Graphics
+    public Graphics(Game g) throws FileNotFoundException { //konstruktor klasy Graphics
+        this.leaderboard = new Leaderboard("leaderboard.txt");
         t.start();//uruchomienie Timera
         gameState = "START";
 
@@ -67,6 +70,8 @@ implements ActionListener {
 
         } else if (gameState == "RUNNING") {
 
+            leaderboard.ScoreIsNotSaved();
+            leaderboard.ResultsAreNotDownloaded();
             g2d.setColor(Color.BLUE);  //kolor przeszkody
 
             for(ArrayList<Rectangle> Obstacle : obstacles.getObstaclesBodies()) { //wypełnienie każdego prostokąta stanowiącego ciało węża
@@ -92,6 +97,7 @@ implements ActionListener {
                 g2d.fill(r);
             }
         } else {
+            var score = new Score((s.getSnakesBody().size() - 3));
             g2d.setColor(Color.red);
             g2d.setFont(fnt0);
             g2d.drawString("GAME OVER", Game.windowsWidth / 2 * Game.windowsDimension - 200, Game.windowsHeight / 2 * Game.windowsDimension - 20 );
@@ -99,7 +105,16 @@ implements ActionListener {
 
             g2d.setColor(Color.white);
             g2d.setFont(fnt1);
-            g2d.drawString("Your Score: " + (s.getSnakesBody().size() - 3), Game.windowsWidth / 2 * Game.windowsDimension - 100, Game.windowsHeight / 2 * Game.windowsDimension + 50);
+            g2d.drawString("Your Score: " + score.getScore(), Game.windowsWidth / 2 * Game.windowsDimension - 100, Game.windowsHeight / 2 * Game.windowsDimension + 50);
+            leaderboard.AddResult(score);
+            leaderboard.SaveResults();
+            leaderboard.ScoreIsSaved();
+            try {
+                leaderboard.DownloadResults();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            leaderboard.ResultsAreDownloaded();
         }
 
     }

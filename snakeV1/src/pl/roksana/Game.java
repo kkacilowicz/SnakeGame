@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Game
@@ -24,7 +25,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     public static final int windowsDimension = 10;
 
         //konstruktor klasy Game
-    public Game() {
+    public Game() throws FileNotFoundException {
         window = new JFrame(); //tworzę nowe okno
         player = new Snake();
         obstacles = new Obstacles();

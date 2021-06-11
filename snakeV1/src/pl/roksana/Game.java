@@ -57,7 +57,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
                 player.grow();
                 food.FruitEaten(player);
                 threads.runTask(food);
-            }else if(checkFrogCollision()){
+            }else if(checkFrogCollision(player)){
                 frog.FrogEaten();
                 threads.runTask(frog);
                 player.grow();
@@ -70,6 +70,10 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
                         food.FruitEaten(aiSnake);
                         aiSnake.grow();
                         threads.runTask(food);
+                    }else if(checkFrogCollision(aiSnake)){
+                        frog.FrogEaten();
+                        threads.runTask(frog);
+                        aiSnake.grow();
                     }
                     threads.runTask(aiSnake);
                     threads.runTask(frog);
@@ -127,8 +131,8 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         return false;
     }
 
-    private boolean checkFrogCollision(){
-        return player.getX() == frog.getFrogBody().x && player.getY() == frog.getFrogBody().y;
+    private boolean checkFrogCollision(Snake snake){
+        return snake.getX() == frog.getFrogBody().x && snake.getY() == frog.getFrogBody().y;
     }
 
 

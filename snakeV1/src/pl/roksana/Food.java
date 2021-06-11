@@ -9,8 +9,7 @@ public class Food implements Runnable {
     private int NumberOfFruits;
     private final Obstacles obstacles;
     private Snake player;
-    private int GameWidth;
-    private int GameHeight;
+
 
     public Food(Snake player, Obstacles obstacles) {
         Fruits = new ArrayList<Rectangle>();
@@ -41,12 +40,12 @@ public class Food implements Runnable {
         }
     }
 
-    public void FruitEaten(){
+    public void FruitEaten(Snake snake){
         for (int i = 0; i <Fruits.size() ; i++) {
-            if(player.getX() + Game.windowsDimension >= Fruits.get(i).x &&
-                    player.getX() - Game.windowsDimension <= Fruits.get(i).x &&
-                    player.getY() + Game.windowsDimension >= Fruits.get(i).y &&
-                    player.getY() - Game.windowsDimension <= Fruits.get(i).y)
+            if(snake.getX() + Game.windowsDimension >= Fruits.get(i).x &&
+                    snake.getX() - Game.windowsDimension <= Fruits.get(i).x &&
+                    snake.getY() + Game.windowsDimension >= Fruits.get(i).y &&
+                    snake.getY() - Game.windowsDimension <= Fruits.get(i).y)
                 Fruits.remove(i);
         }
 
@@ -139,7 +138,6 @@ public class Food implements Runnable {
     @Override
     public void run() {
 
-        this.FruitEaten();
         this.randomSpawn();
 
     }

@@ -23,8 +23,6 @@ public class SnakeThread extends Thread
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(task == null)
-                return;
 
             try {
                 //System.out.println("Dziala" + ThreadName);

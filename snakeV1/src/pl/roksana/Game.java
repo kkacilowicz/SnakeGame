@@ -53,21 +53,26 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
 
     public void update() {
         if (graphics.gameState == "RUNNING") {
-            if (checkFoodCollision()) {
+            if (checkFoodCollision(player)) {
                 player.grow();
+                food.FruitEaten(player);
                 threads.runTask(food);
             }else if(checkFrogCollision()){
                 frog.FrogEaten();
                 threads.runTask(frog);
                 player.grow();
-            }else if (checkWallCollision() || checkSelfCollision() || checkObstacleCollision()) {
+            }else if (checkWallCollision() || checkSelfCollision() || checkObstacleCollision() || checkSnakesCollision()) {
                 graphics.gameState = "END";
             } else {
                 if(MoveAISlower >=4) {    //rzadziej się ta funkcja wywołuje o tyle razy ile jest MoveFrogSlower
                     MoveAISlower =0;
+                    if(checkFoodCollision(aiSnake)){
+                        food.FruitEaten(aiSnake);
+                        aiSnake.grow();
+                        threads.runTask(food);
+                    }
+                    threads.runTask(aiSnake);
                     threads.runTask(frog);
-                    aiSnake.AvoidObstacles();
-                    aiSnake.move();
                 }
                 threads.runTask(player);
 
@@ -77,6 +82,14 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         }
     }
 
+    private boolean checkSnakesCollision(){
+        for (Rectangle r: aiSnake.getSnakesBody()) {
+            if(player.getX() == r.x && player.getY() == r.y)
+                return true;
+        }
+        return false;
+    }
+
     private boolean checkWallCollision() {
         if(player.getX() <= 0 || player.getX() >= windowsDimension * windowsWidth || player.getY() <= 0 || player.getY() >= windowsDimension * windowsHeight ) {
             return true;
@@ -84,14 +97,16 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         return false;
     }
 
-    private   boolean checkFoodCollision() {
+    private   boolean checkFoodCollision(Snake snake) {
         for (Rectangle R: food.getFruits()) {
-            if (player.getX() == R.x && player.getY() == R.y) {
+            if (snake.getX() == R.x && snake.getY() == R.y) {
                 return true;
             }
         }
         return false;
     }
+
+
 
     private boolean checkSelfCollision() {
         for(int i = 1; i < player.getSnakesBody().size() ; i++) {

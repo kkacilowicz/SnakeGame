@@ -9,7 +9,7 @@ public class ProgramThreads extends ThreadGroup
     private List<Runnable> Tasks;
 
     public ProgramThreads(int NumberOfThreads) {
-        super("ThreadPool");
+        super("ProgramThreads");
         this.numberOfThreads = NumberOfThreads;
         this.Tasks = new LinkedList<Runnable>();
         startThreads();

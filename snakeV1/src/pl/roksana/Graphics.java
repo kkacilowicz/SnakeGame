@@ -42,6 +42,10 @@ implements ActionListener {
         this.setFocusTraversalKeysEnabled(false);
     }
 
+
+    /// <summary>
+    /// Function paints several components of game's window
+    /// </summary>
     public void paintComponent(java.awt.Graphics g) {
         super.paintComponent(g);
 

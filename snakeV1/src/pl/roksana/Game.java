@@ -7,9 +7,6 @@ import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-/// <summary>
-/// Class that services interaction between elements in game
-/// </summary>
 public class Game
 implements KeyListener{ //listener który będzie nasłuchiwał które klawisze są wciskane
 
@@ -49,7 +46,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         MoveAISlower =0;
 
     }
-
+    /// <summary>
+    /// Function sets game state as running
+    /// </summary>
     public void start() {
         graphics.gameState = "RUNNING";
 
@@ -89,7 +88,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
 
         }
     }
-
+    /// <summary>
+    /// Function checks if snake runs into AI snake
+    /// </summary>
     private boolean checkSnakesCollision(){
         for (Rectangle r: aiSnake.getSnakesBody()) {
             if(player.getX() == r.x && player.getY() == r.y)
@@ -99,7 +100,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     }
 
     /// <summary>
-    /// Function to check player collision with wall
+    /// Function checks if snake runs into wall
     /// </summary>
     private boolean checkWallCollision() {
         if(player.getX() <= 0 || player.getX() >= windowsDimension * windowsWidth || player.getY() <= 0 || player.getY() >= windowsDimension * windowsHeight ) {
@@ -109,7 +110,7 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     }
 
     /// <summary>
-    /// Function to check snake collision with food
+    /// Function checks if snake runs into food
     /// </summary>
     private   boolean checkFoodCollision(Snake snake) {
         for (Rectangle R: food.getFruits()) {
@@ -121,9 +122,8 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     }
 
 
-
     /// <summary>
-    /// Function to check player self collision
+    /// Function checks if snake runs into himself
     /// </summary>
     private boolean checkSelfCollision() {
         for(int i = 1; i < player.getSnakesBody().size() ; i++) {
@@ -134,8 +134,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         return false;
     }
 
+
     /// <summary>
-    /// Function to check player collision with obstacle
+    /// Function checks if snake runs into obstacle
     /// </summary>
     private boolean checkObstacleCollision(){
         for (ArrayList<Rectangle> Obstacle: obstacles.getObstaclesBodies()) {

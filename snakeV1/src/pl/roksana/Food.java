@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-
+/// <summary>
+/// Class to service food generation
+/// </summary>
 public class Food implements Runnable {
     private ArrayList<Rectangle> Fruits;
     private int NumberOfFruits;
@@ -43,6 +45,9 @@ public class Food implements Runnable {
         }
     }
 
+    /// <summary>
+    /// Function to remove from list if fruit is eaten
+    /// </summary>
     public void FruitEaten(Snake snake){
         for (int i = 0; i <Fruits.size() ; i++) {
             if(snake.getX() + Game.windowsDimension >= Fruits.get(i).x &&

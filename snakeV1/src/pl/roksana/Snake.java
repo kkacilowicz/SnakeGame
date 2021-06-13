@@ -32,7 +32,9 @@ public class Snake implements Runnable
 
     }
 
-    //porusza wężem poprzez dodawanie prostokąta z przodu ciała węża i usuwanie prostokąta na końcu ciała węża
+    /// <summary>
+    /// Function moves snake by adding rectangle in front of snake's head, and removing it from snake's tale
+    /// </summary>
     synchronized public void move(){
         if(move != "NOTHING") {//sprawdzanie bieżącego ruchu
             Rectangle first = snakesBody.get(0); //pierwszy element ciała węża
@@ -59,7 +61,9 @@ public class Snake implements Runnable
 
     }
 
-    //funkcja dodająca
+    /// <summary>
+    /// Function adds rectangle in front of snakes head o increase it's length
+    /// </summary>
     public void grow() { //to samo co w move, tylko że nie usuwamy prostokąta Z końca ciała węża
         Rectangle first = snakesBody.get(0); //pierwszy element ciała węża
 

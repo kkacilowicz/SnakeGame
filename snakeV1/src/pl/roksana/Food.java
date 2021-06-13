@@ -4,6 +4,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
+
 public class Food implements Runnable {
     private ArrayList<Rectangle> Fruits;
     private int NumberOfFruits;
@@ -18,10 +20,11 @@ public class Food implements Runnable {
         this.player = player;
         this.randomSpawn();
     }
-    //funkcja generuje losowe współrzędne pojawiającego sie jedzenia i przypisuje je do x i y,
-    // jednocześnie upewnia się że jedzenie nie wygeneruje się w miejscu w którym aktualnie na planszy znajduje się
-    // ciało węża
-    //funkcja dodatkowo unika powstawanie jedzenia na przeszkodach
+
+    /// <summary>
+    /// Function generates random coordinates of appearing food and assigns it to variables x and y,
+    ///checks if food doesn't generate in the same place as snake's body or obstacles occurs
+    /// </summary>
     public void randomSpawn(){
 
         while (Fruits.size() < NumberOfFruits) {

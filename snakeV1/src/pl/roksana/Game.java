@@ -46,7 +46,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         MoveAISlower =0;
 
     }
-
+    /// <summary>
+    /// Function sets game state as running
+    /// </summary>
     public void start() {
         graphics.gameState = "RUNNING";
 
@@ -86,7 +88,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
 
         }
     }
-
+    /// <summary>
+    /// Function checks if snake runs into AI snake
+    /// </summary>
     private boolean checkSnakesCollision(){
         for (Rectangle r: aiSnake.getSnakesBody()) {
             if(player.getX() == r.x && player.getY() == r.y)
@@ -95,6 +99,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         return false;
     }
 
+    /// <summary>
+    /// Function checks if snake runs into wall
+    /// </summary>
     private boolean checkWallCollision() {
         if(player.getX() <= 0 || player.getX() >= windowsDimension * windowsWidth || player.getY() <= 0 || player.getY() >= windowsDimension * windowsHeight ) {
             return true;
@@ -102,6 +109,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         return false;
     }
 
+    /// <summary>
+    /// Function checks if snake runs into food
+    /// </summary>
     private   boolean checkFoodCollision(Snake snake) {
         for (Rectangle R: food.getFruits()) {
             if (snake.getX() == R.x && snake.getY() == R.y) {
@@ -112,7 +122,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
     }
 
 
-
+    /// <summary>
+    /// Function checks if snake runs into himself
+    /// </summary>
     private boolean checkSelfCollision() {
         for(int i = 1; i < player.getSnakesBody().size() ; i++) {
             if (player.getX() == player.getSnakesBody().get(i).x && player.getY() == player.getSnakesBody().get(i).y) {
@@ -122,6 +134,10 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         return false;
     }
 
+
+    /// <summary>
+    /// Function checks if snake runs into obstacle
+    /// </summary>
     private boolean checkObstacleCollision(){
         for (ArrayList<Rectangle> Obstacle: obstacles.getObstaclesBodies()) {
             for (Rectangle r: Obstacle) {

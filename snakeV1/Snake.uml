@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/Lenovo/IdeaProjects/SnakeGame/snakeV1</OriginalElement>
+  <nodes>
+    <node x="386.0" y="699.0">pl.roksana.Main</node>
+    <node x="0.0" y="343.0">pl.roksana.Frog</node>
+    <node x="261.0" y="194.0">pl.roksana.AISnake</node>
+    <node x="496.0" y="0.0">pl.roksana.Graphics</node>
+    <node x="223.0" y="0.0">pl.roksana.Snake</node>
+    <node x="0.0" y="554.0">pl.roksana.Food</node>
+    <node x="468.0" y="554.0">pl.roksana.ProgramThreads</node>
+    <node x="201.0" y="343.0">pl.roksana.Leaderboard</node>
+    <node x="194.0" y="699.0">pl.roksana.Image</node>
+    <node x="197.0" y="554.0">pl.roksana.SnakeThread</node>
+    <node x="426.0" y="343.0">pl.roksana.Obstacles</node>
+    <node x="0.0" y="699.0">pl.roksana.Score</node>
+    <node x="0.0" y="0.0">pl.roksana.Game</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="pl.roksana.AISnake" target="pl.roksana.Snake" relationship="GENERALIZATION">
+      <point x="0.0" y="-50.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8858218318695107" showDependencies="false" x="370.0" y="388.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

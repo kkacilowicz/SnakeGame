@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['saveresults_192',['SaveResults',['../classpl_1_1roksana_1_1_leaderboard.html#ae5e5cfcbcda968b2480cf9c4e63702b1',1,'pl::roksana::Leaderboard']]],
+  ['score_193',['Score',['../classpl_1_1roksana_1_1_score.html#af585dcd78f05562d1100330afe5483f3',1,'pl.roksana.Score.Score(int Score)'],['../classpl_1_1roksana_1_1_score.html#a570c17e4aa8db1ca61b536eb4630e5a8',1,'pl.roksana.Score.Score(int Score, String Date)']]],
+  ['scoreisnotsaved_194',['ScoreIsNotSaved',['../classpl_1_1roksana_1_1_leaderboard.html#a623b78a81be568dad54ea304a6aaf01a',1,'pl::roksana::Leaderboard']]],
+  ['scoreissaved_195',['ScoreIsSaved',['../classpl_1_1roksana_1_1_leaderboard.html#a5476d3a427ea962a7319b2540f3a603b',1,'pl::roksana::Leaderboard']]],
+  ['setaisnake_196',['setAiSnake',['../classpl_1_1roksana_1_1_game.html#a1384b7f57b63403cc758dd9369205d8d',1,'pl::roksana::Game']]],
+  ['setdateofscore_197',['setDateOfScore',['../classpl_1_1roksana_1_1_score.html#a9f5941ad79f3f97c8497ce1a22c33253',1,'pl::roksana::Score']]],
+  ['setfood_198',['setFood',['../classpl_1_1roksana_1_1_game.html#a34e68d4e2bf9eb5678349746a5ab8f78',1,'pl::roksana::Game']]],
+  ['setfrog_199',['setFrog',['../classpl_1_1roksana_1_1_game.html#aa9cd9f6821075dd55515b9276c32b535',1,'pl::roksana::Game']]],
+  ['setfrogbody_200',['setFrogBody',['../classpl_1_1roksana_1_1_frog.html#af790a4b84ecf321f664fe25170ccaf12',1,'pl::roksana::Frog']]],
+  ['setfruits_201',['setFruits',['../classpl_1_1roksana_1_1_food.html#a6853d957cd28552c3f9c841f4a3fa454',1,'pl::roksana::Food']]],
+  ['setlengthofobstacles_202',['setLengthOfObstacles',['../classpl_1_1roksana_1_1_obstacles.html#aa8393fc4da996db5d017d1ec1b67473e',1,'pl::roksana::Obstacles']]],
+  ['setnumberoffruits_203',['setNumberOfFruits',['../classpl_1_1roksana_1_1_food.html#acae2406345b584f4ed353620f3fc44dc',1,'pl::roksana::Food']]],
+  ['setnumberofobstacles_204',['setNumberOfObstacles',['../classpl_1_1roksana_1_1_obstacles.html#a94d5873f9b72f48bc227da11b38f7adb',1,'pl::roksana::Obstacles']]],
+  ['setobstacles_205',['setObstacles',['../classpl_1_1roksana_1_1_frog.html#a4f6a5c8ff287a412d92827ea4dd9fe82',1,'pl.roksana.Frog.setObstacles()'],['../classpl_1_1roksana_1_1_game.html#a66a00984150c8d2eb3dad589e3569ee9',1,'pl.roksana.Game.setObstacles(Obstacles obstacles)']]],
+  ['setplayer_206',['setPlayer',['../classpl_1_1roksana_1_1_game.html#aa3975d8787568ba191d011ef6bdd308d',1,'pl::roksana::Game']]],
+  ['setresults_207',['setResults',['../classpl_1_1roksana_1_1_leaderboard.html#add697716da12a703e6386c4702ebabda',1,'pl::roksana::Leaderboard']]],
+  ['setscore_208',['setScore',['../classpl_1_1roksana_1_1_score.html#a72529c2ac221cd025d974c32b8dbf04c',1,'pl::roksana::Score']]],
+  ['setsnake_209',['setSnake',['../classpl_1_1roksana_1_1_frog.html#ab2b8d99d9ffbdb937a6f2e5ae16d9a82',1,'pl::roksana::Frog']]],
+  ['setsnakesbody_210',['setSnakesBody',['../classpl_1_1roksana_1_1_snake.html#a66bdaeb79bc62e2000f102850ef11d93',1,'pl::roksana::Snake']]],
+  ['setwindow_211',['setWindow',['../classpl_1_1roksana_1_1_game.html#af9d8c03f0613ff26863ed389b8ea9754',1,'pl::roksana::Game']]],
+  ['snake_212',['Snake',['../classpl_1_1roksana_1_1_snake.html#a85749d4415eda6b1e3e12a545842054b',1,'pl::roksana::Snake']]],
+  ['snakethread_213',['SnakeThread',['../classpl_1_1roksana_1_1_snake_thread.html#abddfd4a7e4bd1f417bb2ed61b28b17f7',1,'pl::roksana::SnakeThread']]],
+  ['start_214',['start',['../classpl_1_1roksana_1_1_game.html#ae00b82324d43d79ed347213747a92353',1,'pl::roksana::Game']]]
+];

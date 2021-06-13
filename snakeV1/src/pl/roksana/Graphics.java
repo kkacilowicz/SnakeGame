@@ -106,6 +106,9 @@ implements ActionListener {
             g2d.setColor(Color.white);
             g2d.setFont(fnt1);
             g2d.drawString("Your Score: " + score.getScore(), Game.windowsWidth / 2 * Game.windowsDimension - 100, Game.windowsHeight / 2 * Game.windowsDimension + 50);
+            g2d.setColor(Color.yellow);
+            g2d.drawString("Press SPACE to RESTART", Game.windowsWidth / 2 * Game.windowsDimension - 180, Game.windowsHeight / 2 * Game.windowsDimension + 100);
+
             leaderboard.AddResult(score);
             leaderboard.SaveResults();
             leaderboard.ScoreIsSaved();

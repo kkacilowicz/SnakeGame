@@ -163,8 +163,17 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
                 player.right();
             }
 
-        } else {
+        } else if (graphics.gameState == "START") {
             this.start();
+        } else {
+            if (keyCode == KeyEvent.VK_SPACE)
+            {
+                //Score.score = 0;
+                //player.move = "NOTHING";
+                graphics.gameState = "RUNNING";
+
+
+            }
         }
 
     }

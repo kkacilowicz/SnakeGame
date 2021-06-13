@@ -3,6 +3,9 @@ package pl.roksana;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/// <summary>
+/// Class to manage format of score etc
+/// </summary>
 public class Score {
     private int Score;
     private String DateOfScore;

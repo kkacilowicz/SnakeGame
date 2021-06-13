@@ -3,6 +3,9 @@ package pl.roksana;
 import java.awt.*;
 import java.util.ArrayList;
 
+/// <summary>
+/// Class which services the frog movement and generation
+/// </summary>
 public class Frog implements Runnable {
 
     private Snake snake;
@@ -21,7 +24,9 @@ public class Frog implements Runnable {
         this.IsFrogEaten =true;      //zakładamy, że jet pierwotnie zjedzona (nie ma jej)
         this.FrogSpawn();
     }
-
+    /// <summary>
+    /// Function that spawns frog on available location
+    /// </summary>
     public void FrogSpawn(){
 
         while (IsFrogEaten) {
@@ -41,7 +46,9 @@ public class Frog implements Runnable {
         }
     }
 
-    //porusza wężem poprzez dodawanie prostokąta z przodu ciała węża i usuwanie prostokąta na końcu ciała węża
+    /// <summary>
+    /// Function that services movement of frog
+    /// </summary>
     public void move(){
         if(move != "NOTHING") {//sprawdzanie bieżącego ruchu
 
@@ -65,6 +72,9 @@ public class Frog implements Runnable {
 
     }
 
+    /// <summary>
+    /// Function that searches for possible collisions and avoid them by changing direction
+    /// </summary>
     public void AvoidObstacles(){
         if(move != "NOTHING") {//sprawdzanie bieżącego ruchu
 

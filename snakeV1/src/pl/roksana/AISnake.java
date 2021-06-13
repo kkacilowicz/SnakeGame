@@ -4,12 +4,18 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static java.lang.Math.*;
-
+/// <summary>
+/// Class which services the AI Snake
+/// </summary>
 public class AISnake extends Snake{
     private final Snake player;
     private final Food food;
     private final Obstacles obstacles;
 
+    /// <summary>
+    /// AI Snake gets info from game to know what to search for, avoid etc.
+    /// </summary>
+    /// <param name="game"> - game and its properties</param>
     public AISnake(Game game) {
         this.StartSpawn();
         this.player = game.getPlayer();
@@ -17,7 +23,9 @@ public class AISnake extends Snake{
         this.obstacles = game.getObstacles();
         this.move = "UP";
     }
-
+    /// <summary>
+    /// Function to spawn AI snake
+    /// </summary>
     private void StartSpawn(){
         this.snakesBody = new ArrayList<>();
 
@@ -36,7 +44,9 @@ public class AISnake extends Snake{
         move = "NOTHING"; //kiedy wąż zostaje utworzony na początku gry zmienna move ma wartość "NOTHING"
     }
 
-
+    /// <summary>
+    /// Function that helps with getting directions of AI snake so as to eat food and avoid obstacles etc.
+    /// </summary>
     public void LookForFood(){
 
         var Target = FindNearestFood();
@@ -89,7 +99,9 @@ public class AISnake extends Snake{
 
     }
 
-
+    /// <summary>
+    /// Function that helps finding food to go to
+    /// </summary>
     synchronized private Rectangle FindNearestFood(){
         var Fruits = food.getFruits();
 
@@ -110,6 +122,10 @@ public class AISnake extends Snake{
         return NearestFood;
     }
 
+    /// <summary>
+    /// Computing length between AI snake and this object
+    /// </summary>
+    /// <param name="rect"> - rectangle to be considered</param>
     private int LengthToObject(Rectangle Rect){
         if(Rect ==null)
             return 10000000;
@@ -119,30 +135,45 @@ public class AISnake extends Snake{
         return (int) sqrt(pow(ValueX,2)+pow(ValueY,2));
     }
 
+    /// <summary>
+    /// Checking collision from right
+    /// </summary>
     private boolean CollisionRight(){
         Rectangle tmp = new Rectangle(Game.windowsDimension, Game.windowsDimension);
         tmp.setLocation((getX() + (2*Game.windowsDimension)), getY() );
         return CheckCollision(tmp);
     }
 
+    /// <summary>
+    /// Checking collision from left
+    /// </summary>
     private boolean CollisionLeft(){
         Rectangle tmp = new Rectangle(Game.windowsDimension, Game.windowsDimension);
         tmp.setLocation((getX() - (2*Game.windowsDimension)), getY() );
         return CheckCollision(tmp);
     }
 
+    /// <summary>
+    /// Checking collision from down
+    /// </summary>
     private boolean CollisionDown(){
         Rectangle tmp = new Rectangle(Game.windowsDimension, Game.windowsDimension);
         tmp.setLocation(getX(), (getY() + (2*Game.windowsDimension)));
         return CheckCollision(tmp);
     }
 
+    /// <summary>
+    /// Checking collision from up
+    /// </summary>
     private boolean CollisionUp(){
         Rectangle tmp = new Rectangle(Game.windowsDimension, Game.windowsDimension);
         tmp.setLocation(getX(), (getY() - (2*Game.windowsDimension)));
         return CheckCollision(tmp);
     }
 
+    /// <summary>
+    /// Checking collision with obstacle
+    /// </summary>
     public boolean CheckObstacleCollision(Rectangle Head){
         for (ArrayList<Rectangle> Obstacle: obstacles.getObstaclesBodies()) {
             for (Rectangle R: Obstacle) {
@@ -154,12 +185,18 @@ public class AISnake extends Snake{
         return false;
     }
 
+    /// <summary>
+    /// Checking collision
+    /// </summary>
     private boolean CheckCollision(Rectangle Head){
         return food.LocationOnSnake(Head, player) ||
                 CheckObstacleCollision(Head) ||
                 food.LocationOnWall(Head);
     }
 
+    /// <summary>
+    /// Functions to be run by thread
+    /// </summary>
     @Override
     public void run() {
         this.LookForFood();

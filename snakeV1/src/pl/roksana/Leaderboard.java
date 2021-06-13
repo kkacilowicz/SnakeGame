@@ -11,6 +11,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
+/// <summary>
+/// Class which services saving Top10 results to file and reading from this file
+/// </summary>
 public class Leaderboard {
     private ArrayList<Score> Results;
     private boolean isSaved;
@@ -24,6 +27,9 @@ public class Leaderboard {
         this.DownloadResults();
     }
 
+    /// <summary>
+    /// Function to save results to file
+    /// </summary>
     public void SaveResults(){
         if(!isSaved) {
             StoreOnlyTop10();
@@ -39,6 +45,9 @@ public class Leaderboard {
         }
     }
 
+    /// <summary>
+    /// Function to remove additional results
+    /// </summary>
     private void StoreOnlyTop10(){
 
         Results.sort(Comparator.comparing(Score::getScore));
@@ -48,6 +57,9 @@ public class Leaderboard {
 
     }
 
+    /// <summary>
+    /// Function to download results from file so as to be printed
+    /// </summary>
     public void DownloadResults() throws FileNotFoundException {
         if(!isDownloaded) {
             File FileWithResults = new File(Filename);
@@ -60,6 +72,7 @@ public class Leaderboard {
                 var score = Integer.parseInt(ExtractScore);
                 var Result = new Score(score, DateOfResult);
                 this.Results.add(Result);
+                System.out.println(data);
             }
         }
     }
@@ -80,6 +93,9 @@ public class Leaderboard {
         isSaved = true;
     }
 
+    /// <summary>
+    /// Function to add results
+    /// </summary>
     public void AddResult(Score result){
         if(result == null)
             return;

@@ -1,6 +1,8 @@
 package pl.roksana;
 
-
+/// <summary>
+/// Class to manage threads
+/// </summary>
 public class SnakeThread extends Thread
 {
     private static String ThreadName;
@@ -11,6 +13,7 @@ public class SnakeThread extends Thread
         ThreadName = "NewThread " + ID;
         this.GroupOfThreads = Threads;
     }
+
 
     @Override
     public void run()

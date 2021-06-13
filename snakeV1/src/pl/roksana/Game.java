@@ -7,6 +7,9 @@ import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/// <summary>
+/// Class that services interaction between elements in game
+/// </summary>
 public class Game
 implements KeyListener{ //listener który będzie nasłuchiwał które klawisze są wciskane
 
@@ -95,6 +98,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         return false;
     }
 
+    /// <summary>
+    /// Function to check player collision with wall
+    /// </summary>
     private boolean checkWallCollision() {
         if(player.getX() <= 0 || player.getX() >= windowsDimension * windowsWidth || player.getY() <= 0 || player.getY() >= windowsDimension * windowsHeight ) {
             return true;
@@ -102,6 +108,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         return false;
     }
 
+    /// <summary>
+    /// Function to check snake collision with food
+    /// </summary>
     private   boolean checkFoodCollision(Snake snake) {
         for (Rectangle R: food.getFruits()) {
             if (snake.getX() == R.x && snake.getY() == R.y) {
@@ -113,6 +122,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
 
 
 
+    /// <summary>
+    /// Function to check player self collision
+    /// </summary>
     private boolean checkSelfCollision() {
         for(int i = 1; i < player.getSnakesBody().size() ; i++) {
             if (player.getX() == player.getSnakesBody().get(i).x && player.getY() == player.getSnakesBody().get(i).y) {
@@ -122,6 +134,9 @@ implements KeyListener{ //listener który będzie nasłuchiwał które klawisze 
         return false;
     }
 
+    /// <summary>
+    /// Function to check player collision with obstacle
+    /// </summary>
     private boolean checkObstacleCollision(){
         for (ArrayList<Rectangle> Obstacle: obstacles.getObstaclesBodies()) {
             for (Rectangle r: Obstacle) {

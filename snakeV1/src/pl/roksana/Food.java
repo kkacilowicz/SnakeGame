@@ -3,14 +3,18 @@ package pl.roksana;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
-
+/// <summary>
+/// Class which services the food generation
+/// </summary>
 public class Food implements Runnable {
     private ArrayList<Rectangle> Fruits;
     private int NumberOfFruits;
     private final Obstacles obstacles;
     private Snake player;
 
-
+    /// <summary>
+    /// Constructor
+    /// </summary>
     public Food(Snake player, Obstacles obstacles) {
         Fruits = new ArrayList<Rectangle>();
         NumberOfFruits = 3;
@@ -18,10 +22,12 @@ public class Food implements Runnable {
         this.player = player;
         this.randomSpawn();
     }
+    /// <summary>
     //funkcja generuje losowe współrzędne pojawiającego sie jedzenia i przypisuje je do x i y,
     // jednocześnie upewnia się że jedzenie nie wygeneruje się w miejscu w którym aktualnie na planszy znajduje się
     // ciało węża
     //funkcja dodatkowo unika powstawanie jedzenia na przeszkodach
+    ///</summary>
     public void randomSpawn(){
 
         while (Fruits.size() < NumberOfFruits) {
@@ -40,6 +46,9 @@ public class Food implements Runnable {
         }
     }
 
+    /// <summary>
+    /// Function that checks if fruit is eaten by snake and removes it from list
+    /// </summary>
     public void FruitEaten(Snake snake){
         for (int i = 0; i <Fruits.size() ; i++) {
             if(snake.getX() + Game.windowsDimension >= Fruits.get(i).x &&
@@ -50,7 +59,9 @@ public class Food implements Runnable {
         }
 
     }
-
+    /// <summary>
+    /// Function that checks possible locations to generate food
+    /// </summary>
     private boolean NotPossibleLocation(int LocationX, int LocationY){
         return LocationOnSnake(LocationX, LocationY, player) ||
                 obstacles.CheckIfTheresObstacle(LocationX, LocationY, true) ||
@@ -58,7 +69,9 @@ public class Food implements Runnable {
                 LocationOnWall(LocationX, LocationY) ||
                 LocationOnFruit(LocationX, LocationY);
     }
-
+    /// <summary>
+    /// Function that checks if location is on fruit
+    /// </summary>
     public boolean LocationOnFruit(int LocationX, int LocationY){
 
         var PositionX = LocationX * Game.windowsDimension;
@@ -73,7 +86,9 @@ public class Food implements Runnable {
 
         return false;
     }
-
+    /// <summary>
+    /// Function that checks if location is on fruit
+    /// </summary>
     public boolean LocationOnFruit(Rectangle R){
 
         for (Rectangle fruit: Fruits) {
@@ -86,6 +101,9 @@ public class Food implements Runnable {
 
         return false;
     }
+    /// <summary>
+    /// Function that checks if location is on snake
+    /// </summary>
     synchronized public boolean LocationOnSnake(int LocationX, int LocationY, Snake player){
 
         for(Rectangle r : player.getSnakesBody()){ //dla każdego prostokąta wchodzącego w skład ciała węża
@@ -96,7 +114,9 @@ public class Food implements Runnable {
         }
         return false;
     }
-
+    /// <summary>
+    /// Function that checks if location is on snake
+    /// </summary>
     synchronized public boolean LocationOnSnake(Rectangle R, Snake player){
 
         var SnakesBody = new ArrayList<Rectangle>(player.getSnakesBody());
@@ -110,11 +130,15 @@ public class Food implements Runnable {
         }
         return false;
     }
-
+    /// <summary>
+    /// Function that checks if location is on borders
+    /// </summary>
     public boolean LocationOnWall(int LocationX, int LocationY) {
         return LocationX < 0 || LocationX >= (Game.windowsWidth-2) || LocationY < 0 || LocationY >= (Game.windowsHeight-4);
     }
-
+    /// <summary>
+    /// Function that checks if location is on borders
+    /// </summary>
     public boolean LocationOnWall(Rectangle R) {
         return R.x < 0 || R.x >= (Game.windowsWidth-2)*Game.windowsDimension || R.y < 0 || R.y >= (Game.windowsHeight-4)*Game.windowsDimension;
     }

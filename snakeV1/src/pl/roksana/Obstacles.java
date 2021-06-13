@@ -3,7 +3,9 @@ package pl.roksana;
 import java.awt.*;
 import java.util.ArrayList;
 
-
+/// <summary>
+/// Class to create obstacles
+/// </summary>
 public class Obstacles {
 
     private ArrayList<ArrayList<Rectangle>> ObstaclesBodies;
@@ -15,6 +17,9 @@ public class Obstacles {
        this.GenerateObstacles();
     }
 
+    /// <summary>
+    /// Function to generate obstacles on proper locations
+    /// </summary>
     public void GenerateObstacles(){
 
         ObstaclesBodies = new ArrayList<ArrayList<Rectangle>>();
@@ -57,20 +62,32 @@ public class Obstacles {
         }
     }
 
+    /// <summary>
+    /// Function to check obstacles if obstacle is not too close to wall
+    /// </summary>
     private boolean TooCloseToWall(int LocationX, int LocationY){
         return LocationX <= LengthOfObstacles || LocationX >= Game.windowsWidth - (LengthOfObstacles +3)
                 || LocationY <= LengthOfObstacles || LocationY >= Game.windowsHeight - (LengthOfObstacles +3);
     }
 
+    /// <summary>
+    /// Function to check obstacles if obstacle is not on snake
+    /// </summary>
     private boolean LocationXOnSnake(int LocationX){
         return LocationX > Game.windowsWidth / 2 - 4 && LocationX < Game.windowsWidth / 2 + 3;
     }
 
+    /// <summary>
+    /// Function to check obstacles if obstacle is not on snake
+    /// </summary>
     private boolean LocationYOnSnake(int LocationY){
         return LocationY > Game.windowsHeight / 2 - 4 && LocationY < Game.windowsWidth / 2 + 3;
     }
 
 
+    /// <summary>
+    /// Function to check obstacles if theres obstacle
+    /// </summary>
     public boolean CheckIfTheresObstacle(int LocationX, int LocationY, boolean IsHorizontal){
 
         if(!IsHorizontal) {
